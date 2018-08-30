@@ -1,8 +1,17 @@
 export class Customer {
-    id: number;
     
-    constructor(id: number) {
-        this.id = id;
+    bar: number;
+
+    constructor(private id: number, bar?: number) {
+        this.bar = bar;
+    } 
+
+    myMethod(arg: string | number) {
+        if (typeof arg === 'number') {
+            return arg;
+        }
+
+        return arg;
     }
 
 

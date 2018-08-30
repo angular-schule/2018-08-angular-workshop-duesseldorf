@@ -1,9 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Customer = /** @class */ (function () {
-    function Customer(id) {
+    function Customer(id, bar) {
         this.id = id;
+        this.bar = bar;
     }
+    Customer.prototype.myMethod = function (arg) {
+        if (typeof arg === 'number') {
+            return arg;
+        }
+        return arg;
+    };
     Customer.prototype.foo = function () {
         var _this_1 = this;
         var _this = this;
