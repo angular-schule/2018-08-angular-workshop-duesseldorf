@@ -35,4 +35,8 @@ export class DashboardComponent implements OnInit {
     ];
   }
 
+  trackBook(index: number, item: Book) {
+    return item.isbn;
+  }
+
 }
