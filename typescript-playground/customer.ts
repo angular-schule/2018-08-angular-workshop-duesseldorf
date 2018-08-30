@@ -2,7 +2,7 @@ export class Customer {
     
     bar: number;
 
-    constructor(private id: number, bar?: number) {
+    constructor(public id: number, bar?: number) {
         this.bar = bar;
     } 
 
