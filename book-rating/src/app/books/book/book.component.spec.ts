@@ -54,7 +54,7 @@ describe('BookComponent', () => {
   });
 
 
-  fit('should call rateUp() on up button click', () => {
+  it('should call rateUp() on up button click', () => {
     spyOn(component, 'rateUp');
 
     const rateUpBtn = fixture.debugElement.query(By.css('.testing-rate-up-btn'));
