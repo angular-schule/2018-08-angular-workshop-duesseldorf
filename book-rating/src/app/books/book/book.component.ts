@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../shared/book';
+import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
   selector: 'br-book',
@@ -10,9 +11,11 @@ export class BookComponent implements OnInit {
 
   @Input() book: Book;
 
-  constructor() { }
+  constructor(private rs: BookRatingService) { }
 
   ngOnInit() {
+    // DEMO
+    this.rs.rateDown(this.book);
   }
 
   getRating() {
