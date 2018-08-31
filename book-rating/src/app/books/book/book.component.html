@@ -12,5 +12,8 @@
     <div>
       <span *ngFor="let x of getRating()">⭐️</span>
     </div>
+
+    <button class="btn btn-secondary mr-2" (click)="rateUp()">👍</button>
+    <button class="btn btn-secondary" (click)="rateDown()">👎</button>
   </div>
 </div>

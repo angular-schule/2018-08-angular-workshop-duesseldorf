@@ -12,6 +12,25 @@ export class DashboardComponent implements OnInit {
 
   constructor() {}
   
+  updateSortList(book: Book) {
+    /*
+    // altes Buch aus der Liste entfernen
+    const cleanedList = this.books.filter(b => b.isbn !== book.isbn);
+
+    // neues Buch einfügen
+    const updatedList = [...cleanedList, book];
+
+    // sortieren
+    updatedList.sort((a, b) => b.rating - a.rating);
+
+    this.books = updatedList;*/
+
+    this.books = this.books
+      .map(b => b.isbn === book.isbn ? book : b)
+      .sort((a, b) => b.rating - a.rating);
+  }
+
+
   ngOnInit() {
     this.books = [
       {

@@ -1,6 +1,7 @@
 <br-book
   *ngFor="let b of books; trackBy: trackBook"
   [book]="b"
+  (rate)="updateSortList($event)"
 ></br-book>
 
 <ul>
