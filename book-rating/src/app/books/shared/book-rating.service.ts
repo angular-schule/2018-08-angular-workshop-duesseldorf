@@ -9,11 +9,13 @@ export class BookRatingService {
   constructor() { }
 
   rateUp(book: Book): Book {
-    return book;
+    return { ...book, rating: Math.min(book.rating + 1, 5) };
   }
 
   rateDown(book: Book): Book {
-    console.log('RATE DOWN');
-    return book;
+    return {
+      ...book,
+      rating: book.rating > 1 ? book.rating - 1 : book.rating
+    };
   }
 }
