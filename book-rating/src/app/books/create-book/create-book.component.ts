@@ -26,6 +26,9 @@ export class CreateBookComponent implements OnInit {
       title: new FormControl('', Validators.required),
       description: new FormControl('')
     });
+
+    this.bookForm.valueChanges
+      .subscribe(value => console.log(value));
   }
 
   submitForm() {
@@ -39,6 +42,13 @@ export class CreateBookComponent implements OnInit {
 
     // Buch ans Dashboard schicken: Event (Output) (create)
     this.create.emit(newBook);
+
+    this.bookForm.reset();
+    /*this.bookForm.reset({
+      isbn: '',
+      title: '',
+      description: ''
+    });*/
   }
 
 }
