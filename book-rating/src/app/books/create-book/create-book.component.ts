@@ -1,20 +1,26 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Book } from '../shared/book';
-import { map, distinctUntilChanged, filter, debounceTime, mergeMap, switchMap } from 'rxjs/operators';
+import { map, distinctUntilChanged, filter, debounceTime, mergeMap, switchMap, takeUntil } from 'rxjs/operators';
 import { BookStoreService } from '../shared/book-store.service';
+import { Subscription, Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'br-create-book',
   templateUrl: './create-book.component.html',
   styleUrls: ['./create-book.component.scss']
 })
-export class CreateBookComponent implements OnInit {
+export class CreateBookComponent implements OnInit, OnDestroy {
 
   @Output() create = new EventEmitter<Book>();
 
-
   bookForm: FormGroup;
+
+  destroy$ = new Subject();
+
+
+  results$: Observable<string[]>;
+
 
   constructor(private bs: BookStoreService) { }
 
@@ -29,14 +35,18 @@ export class CreateBookComponent implements OnInit {
       description: new FormControl('')
     });
 
-    this.bookForm.valueChanges.pipe(
+    this.results$ = this.bookForm.valueChanges.pipe(
       map(value => value.title),
       distinctUntilChanged(),
       debounceTime(1000),
       filter(title => title.length >= 3),
-      switchMap(title => this.bs.search(title))
-    )
-    .subscribe(results => console.log(results));
+      switchMap(title => this.bs.search(title)),
+      // takeUntil(this.destroy$),
+    );
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
   }
 
   submitForm() {

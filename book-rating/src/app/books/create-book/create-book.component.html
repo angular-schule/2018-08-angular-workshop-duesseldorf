@@ -26,4 +26,11 @@
     </div>
 </form>
 
+
+<ul>
+    <li *ngFor="let r of results$ | async">{{ r }}</li>
+</ul>
+
+
+
 {{ bookForm.value | json }}
