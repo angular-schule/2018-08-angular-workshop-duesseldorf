@@ -8,6 +8,7 @@ import { ButtonSharedModule } from '../button-shared/button-shared.module';
 import { FancyButtonComponent } from '../button-shared/fancy-button/fancy-button.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 
 @NgModule({
@@ -20,10 +21,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     DashboardComponent,
     BookComponent,
-    CreateBookComponent
+    CreateBookComponent,
+    BookDetailsComponent
   ],
-  exports: [
-    DashboardComponent
-  ]
+  exports: []
 })
 export class BooksModule { }
