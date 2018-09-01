@@ -12,6 +12,11 @@ export class DashboardComponent implements OnInit {
 
   constructor() {}
   
+  addBookToList(book: Book) {
+    this.books = [...this.books, book];
+  }
+
+
   updateSortList(book: Book) {
     /*
     // altes Buch aus der Liste entfernen
