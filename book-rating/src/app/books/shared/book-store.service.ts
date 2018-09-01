@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Book } from './book';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,14 @@ export class BookStoreService {
           rating: rawBook.rating
         };
       }))
+    );
+  }
+
+
+  search(term: string): Observable<string[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/books/search/${term}`).pipe(
+      map(rawBooks => rawBooks.map(rawBook => rawBook.title)),
+      delay(2000)
     );
   }
 
